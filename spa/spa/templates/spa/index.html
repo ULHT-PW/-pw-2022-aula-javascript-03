@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPA</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'spa/style.css' %}">
+    <script src="{% static 'spa/spa.js' %}"></script>
+</head>
+<body>
+    <h1>Single Page Application</h1>
+    <button data-section="1">Secção 1</button>
+    <button data-section="2">Secção 2</button>
+    <button data-section="3">Secção 3</button>
+
+    <div id="content"></div>
+</body>
+</html>

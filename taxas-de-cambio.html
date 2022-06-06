@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            fetch(
+                    'http://api.exchangeratesapi.io/v1/latest?access_key=feeea4a36c99c7c5f31c70dbfae3d215&symbols=CHF,USD,GBP'
+                    )
+                .then(response => response.json())
+                .then(data => {
+                    const rates = data.rates;
+                    console.log(rates);
+                    for (let rate in rates) {
+                        let option = document.createElement('option');
+                        option.value = rate;
+                        option.innerHTML = rate;
+                        document.querySelector('#moeda').append(option);
+                    }
+
+
+
+                    document.querySelector('select').onchange = () => {
+
+                        const moeda = document.querySelector('#moeda').value;
+                        const frase = `1 Eur = ${rates[moeda].toFixed(2)} ${moeda}`;
+                        document.querySelector('#cambio').innerHTML = frase;
+
+                        return false;
+                    }
+
+                });
+
+        });
+    </script>
+
+</head>
+
+<body>
+    <h1>Taxas de câmbio</h1>
+
+
+        <select id="moeda">
+        </select>
+
+    <p id="cambio"></p>
+</body>
+
+</html>

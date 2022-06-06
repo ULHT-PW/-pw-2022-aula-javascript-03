@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Posts</title>
+    <style>
+        #posts * {
+            background: purple;
+            color: aliceblue;
+margin:0.5em;
+padding:0.5em;
+        }
+    </style>
+    <script>
+        // inicio doprimeiro post
+        let counter = 1;
+        // quantidade de posts a carregar de cada vez
+        const quantity = 20;
+
+        // depois de carregar o DOM, descarrega 20 primeiros.
+        document.addEventListener('DOMContentLoaded', load);
+
+        // qd faz scroll até ao fundo, carrega peoximos 20 posts
+        window.onscroll = () => {
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight)
+                load();
+        }
+
+        // carrega proximo conjunto de posts
+        function load() {
+
+            // define os numeros de posts de inicio e fim, 
+            // e atualiza contador
+            const start = counter;
+            const end = start + quantity - 1;
+            counter = end + 1;
+
+            // Obtém novos posts e adiciona-os
+            fetch(`/posts?start=${start}&end=${end}`)
+                .then(response => response.json())
+                .then(data => {
+                    data.posts.forEach(add_post);
+                })
+        };
+
+        // Adiciona novo post com conteudo ao DOM
+        function add_post(contents) {
+
+            // Cria novo post
+            const post = document.createElement('div');
+            post.innerHTML = contents;
+
+            // adiciona post ao DOM
+            document.querySelector('#posts').append(post);
+        };
+    </script>
+</head>
+
+<body>
+    <div id="posts"></div>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+body {
+    background: purple;
+    color: white;
+}
+button {
+    border: none;
+    color: grey;
+    box-shadow: 1px 2px 2px;
+    border-radius: 2px;
+}
+button:hover {
+    color: black;
+}
+button:active {
+    box-shadow: 0px 0px 0px;
+}
+#content {
+    background: white;
+    color: black;
+    margin: 1em 0;
+    padding: 2em;
+    border-radius: 0.5em;
+}
